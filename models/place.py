@@ -6,6 +6,12 @@ from sqlalchemy.orm import relationship
 from os import getenv
 import models
 
+place_amenity = Table('place_amenity', Base.metadata, 
+                      Column('place_id', String(60), ForeignKey('places.id'),
+                             primary_key=True, nullable=False),
+                      Column('amenity_id', String(60), ForeignKey('amenities.id'),
+                             primary_key=True, nullable=False))
+
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -24,6 +30,8 @@ class Place(BaseModel, Base):
         longitude = Column(Float, nullable=True)
         reviews = relationship("Review", backref="place",
                                cascade="all, delete")
+        amenities = relationship("Amenity", secondary=place_amenity, viewonly=False,
+                                 back_populates='place_amenity')
     else:
         """ For FileStorage"""
         city_id = ""
@@ -48,3 +56,18 @@ class Place(BaseModel, Base):
                 if reveiw.place_id == self.id:
                     review_list.append(reveiw)
             return review_list
+
+        @property
+        def amenities(self):
+            """Getter property for amenities"""
+            return self.amenity_ids
+
+        @amenities.setter
+        def amenities(self, value):
+            """Setter property for amenities"""
+            from models import storage
+            amenities_list = []
+            for value in storage.all(Amenity).values():
+                if value in self.amenity_ids:
+                    amenities_list.append(value)
+            self.amenity_ids = amenities_list
