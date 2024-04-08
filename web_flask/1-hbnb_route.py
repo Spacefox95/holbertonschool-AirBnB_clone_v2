@@ -9,9 +9,9 @@ Starts Falsk web app and display message
 app = Flask(__name__)
 
 
-@app.route("/", strict_slashes=False)
+@app.route("/hbnb", strict_slashes=False)
 def hello():
-    return "Hello HBNB"
+    return "HBNB"
 
 
 if __name__ == '__main__':
