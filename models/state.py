@@ -24,8 +24,9 @@ class State(BaseModel, Base):
             """
             Returns list of City instances with states_id == current State.id
             """
+            from models.city import City
             city_list = []
-            for city in models.storage.all("City").values():
+            for city in models.storage.all(City).values():
                 if city.state_id == self.id:
                     city_list.append(city)
             return city_list
