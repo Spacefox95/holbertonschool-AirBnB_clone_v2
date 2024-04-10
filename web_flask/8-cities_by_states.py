@@ -19,9 +19,8 @@ def html_page_display(n):
     Display a HTML page only if n is a string
     """
     states = storage.all(State).values()
-    city = storage.all(City).values()
     sorted_states = sorted(states, key=lambda x: x.name)
-    return render_template('7-states_list.html', n=n, states=sorted_states, city=city)
+    return render_template('8-cities_by_states.html', n=n, states=sorted_states)
 
 @app.teardown_appcontext
 def teardown_db(exception):

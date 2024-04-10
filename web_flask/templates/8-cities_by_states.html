@@ -11,9 +11,8 @@
 		{% for item in states %}
 		<LI>{{ item.id }}: <B>{{ item.name }}</B>
 			<UL>
-				{% for city in city %}
-				<LI>{{ city.id }}: <B>{{ city.name }}</B>
-				</LI>
+				{% for city in item.cities %}
+				<LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
 				{% endfor %}
 			</UL>
 		</LI>
