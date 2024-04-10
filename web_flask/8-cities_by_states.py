@@ -1,13 +1,13 @@
 #!/usr/bin/python3
+"""
+Starts Falsk web app and display message
+"""
 
 from flask import Flask, render_template, appcontext_tearing_down
 from models import storage
 from models.state import State
 from models.city import City
 
-"""
-Starts Falsk web app and display message
-"""
 
 app = Flask(__name__)
 

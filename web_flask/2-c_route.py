@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-
-from flask import Flask
-
 """
 Starts Falsk web app and display message
 """
+
+from flask import Flask
+
 
 app = Flask(__name__)
 
