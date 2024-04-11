@@ -3,7 +3,7 @@
 Starts Falsk web app and display message
 """
 
-from flask import Flask, render_template, appcontext_tearing_down
+from flask import Flask, render_template
 from models import storage
 from models.state import State
 
@@ -11,15 +11,14 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route("/states_list/", defaults={'n': 'States'}, strict_slashes=False)
-@app.route("/states_list/<string:n>", strict_slashes=False)
-def html_display_odd_even(n):
+@app.route("/states_list/", strict_slashes=False)
+def html_display_odd_even():
     """
-    Display a HTML page only if n is an integer
+    Display a HTML page that list all the States objects
     """
     states = storage.all(State).values()
     sorted_states = sorted(states, key=lambda x: x.name)
-    return render_template('7-states_list.html', n=n, states=sorted_states)
+    return render_template('7-states_list.html', states=sorted_states)
 
 
 @app.teardown_appcontext
