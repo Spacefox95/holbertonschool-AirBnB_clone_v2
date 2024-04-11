@@ -4,10 +4,10 @@
 	<TITLE>HBNB</TITLE>
 </HEAD>
 <BODY>
-	{% if new_state %}
+	{% if state %}
     <H1>States</H1>
     <UL>
-		{% for item in new_state|sort(attribute='name') %}
+		{% for item in state|sort(attribute='name') %}
 		<LI>{{ item.id }}: <B>{{ item.name }}</B></LI>
         {% endfor %}
     </UL>
@@ -20,7 +20,7 @@
 		{% endfor %}
 	</UL>
     {% else %}
-	<H1>{{ error }}</H1>
+	<H1>Not found!</H1>
     {% endif %}
 </BODY>
 </HTML>
