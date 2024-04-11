@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 
 @app.route("/states/", strict_slashes=False)
-@app.route("/states/<id>")
+@app.route("/states/<id>", strict_slashes=False)
 def html_cities_by_state(id=None):
     """
     Display an HTML page listing all cities by state
@@ -30,6 +30,9 @@ def html_cities_by_state(id=None):
 
 @app.teardown_appcontext
 def teardown_db(exception):
+    """
+    blabla
+    """
     storage.close()
 
 
