@@ -7,7 +7,7 @@
 	{% if new_state %}
     <H1>States</H1>
     <UL>
-		{% for item in new_state %}
+		{% for item in new_state|sort(attribute='name') %}
 		<LI>{{ item.id }}: <B>{{ item.name }}</B></LI>
         {% endfor %}
     </UL>
