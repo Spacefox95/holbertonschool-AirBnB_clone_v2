@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route("/", strict_slashes=False)
 def hello():
     """ Display Hello HBNB """
-    return "Hello HBNB"
+    return "Hello HBNB!"
 
 
 """ Specify the port """
